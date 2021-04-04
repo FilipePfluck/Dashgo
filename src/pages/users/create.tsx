@@ -8,7 +8,7 @@ HStack,
 Button,
 SimpleGrid
 } from '@chakra-ui/react'
-import { RiAddLine, RiPencilLine } from 'react-icons/ri'
+import NextLink from 'next/link'
 
 import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar'
@@ -48,7 +48,9 @@ return(
 
                 <Flex mt="8" justify="flex-end">
                     <HStack spacing="4">
-                        <Button colorScheme="whiteAlpha">Cancelar</Button>
+                        <NextLink href="/users" passHref>
+                            <Button colorScheme="whiteAlpha">Cancelar</Button>
+                        </NextLink>
                         <Button colorScheme="pink">Salvar</Button>
                     </HStack>
                 </Flex>

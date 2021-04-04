@@ -21,7 +21,7 @@ const Searchbox = ()=>{
                 <Input
                     color="gray.50"
                     variant="unstyled"
-                    placeHolder="Buscar na plataforma"
+                    placeholder="Buscar na plataforma"
                     _placeholder={{color: 'gray.400'}}
                     px="4"
                     mr="4"
