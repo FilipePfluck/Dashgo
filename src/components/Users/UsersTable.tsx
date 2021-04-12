@@ -16,11 +16,19 @@ import { RiPencilLine } from 'react-icons/ri'
 
 import EditButton from './EditButton'
 
-interface UsersTableProps {
-    isWide?: boolean
+interface User {
+    id: number,
+    name: string
+    email: string
+    createdAt: string
 }
 
-const UsersTable: React.FC<UsersTableProps> = ({isWide=true}) => {
+interface UsersTableProps {
+    isWide?: boolean
+    users: User[]
+}
+
+const UsersTable: React.FC<UsersTableProps> = ({isWide=true, users}) => {
     return(
         <Table colorScheme="whiteAlpha">
 
@@ -36,101 +44,31 @@ const UsersTable: React.FC<UsersTableProps> = ({isWide=true}) => {
             </Thead>
 
             <Tbody>
-                <Tr>
-                    <Td px={["4","4","6"]}> 
-                        <Checkbox colorScheme="pink"/>
-                    </Td>
-                    <Td> 
-                        <Box>
-                            <Text fontWeight="bold">
-                                Diego Fernandes
-                            </Text>
-                            <Text sontSize="sm" color="gray.300">
-                                diego.schell.f@gmail.com
-                            </Text>
-                        </Box>
-                    </Td>
-                    {isWide && (<Td> 
-                        <Text>04 de Abril, 2021</Text>
-                    </Td>)}
-                    {isWide && (<Td>
-                        <EditButton>
-                            Editar
-                        </EditButton>
-                    </Td>)}
-                </Tr>
-
-                <Tr>
-                    <Td px={["4","4","6"]}> 
-                        <Checkbox colorScheme="pink"/>
-                    </Td>
-                    <Td> 
-                        <Box>
-                            <Text fontWeight="bold">
-                                Diego Fernandes
-                            </Text>
-                            <Text sontSize="sm" color="gray.300">
-                                diego.schell.f@gmail.com
-                            </Text>
-                        </Box>
-                    </Td>
-                    {isWide && (<Td> 
-                        <Text>04 de Abril, 2021</Text>
-                    </Td>)}
-                    {isWide && (<Td>
-                        <EditButton>
-                            Editar
-                        </EditButton>
-                    </Td>)}
-                </Tr>
-
-                <Tr>
-                    <Td px={["4","4","6"]}> 
-                        <Checkbox colorScheme="pink"/>
-                    </Td>
-                    <Td> 
-                        <Box>
-                            <Text fontWeight="bold">
-                                Diego Fernandes
-                            </Text>
-                            <Text sontSize="sm" color="gray.300">
-                                diego.schell.f@gmail.com
-                            </Text>
-                        </Box>
-                    </Td>
-                    {isWide && (<Td> 
-                        <Text>04 de Abril, 2021</Text>
-                    </Td>)}
-                    {isWide && (<Td>
-                        <EditButton>
-                            Editar
-                        </EditButton>
-                    </Td>)}
-                </Tr>
-
-                <Tr>
-                    <Td px={["4","4","6"]}> 
-                        <Checkbox colorScheme="pink"/>
-                    </Td>
-                    <Td> 
-                        <Box>
-                            <Text fontWeight="bold">
-                                Diego Fernandes
-                            </Text>
-                            <Text sontSize="sm" color="gray.300">
-                                diego.schell.f@gmail.com
-                            </Text>
-                        </Box>
-                    </Td>
-                    {isWide && (<Td> 
-                        <Text>04 de Abril, 2021</Text>
-                    </Td>)}
-                    {isWide && (<Td>
-                        <EditButton>
-                            Editar
-                        </EditButton>
-                    </Td>)}
-                </Tr>
+                {users.map(user => (
+                    <Tr key={user.id}>
+                        <Td px={["4","4","6"]}> 
+                            <Checkbox colorScheme="pink"/>
+                        </Td>
+                        <Td> 
+                            <Box>
+                                <Text fontWeight="bold">
+                                    {user.name}
+                                </Text>
+                                <Text sontSize="sm" color="gray.300">
+                                    {user.email}
+                                </Text>
+                            </Box>
+                        </Td>
+                        {isWide && (<Td> 
+                            <Text>{user.createdAt}</Text>
+                        </Td>)}
+                        {isWide && (<Td>
+                            <EditButton>
+                                Editar
+                            </EditButton>
+                        </Td>)}
+                    </Tr>
+                ))}
             </Tbody>
         </Table>
     )
