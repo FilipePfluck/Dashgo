@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 import { 
     Box, 
     Flex, 
@@ -16,19 +18,17 @@ import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar'
 import Pagination from '../../components/Pagination'
 import UsersTable from '../../components/Users/UsersTable'
-import { useEffect } from 'react'
+
 
 const UserList = () => {
-    const { data, isLoading, isFetching, error } = useUser
+    const [page, setPage] = useState<number>(1)
+
+    const { data, isLoading, isFetching, error } = useUser(page)
 
     const isWideVersion = useBreakpointValue({
         base: false,
         lg: true
     })
-
-    useEffect(()=>{
-        
-    },[])
 
     return(
         <Box>
@@ -73,9 +73,13 @@ const UserList = () => {
                         </Flex>
                     ) : (
                         <>
-                            <UsersTable users={data} isWide={isWideVersion}/>
+                            <UsersTable users={data.users} isWide={isWideVersion}/>
                     
-                            <Pagination/>
+                            <Pagination
+                                totalCountOfRegisters={data.totalCount}
+                                currentPage={page}
+                                onPageChange={setPage}
+                            />
                         </>
                     ) }
                 </Box>
